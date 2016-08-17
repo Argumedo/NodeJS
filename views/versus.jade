@@ -1,0 +1,78 @@
+extends master
+
+block content
+
+  body(ng-controller="versusController")
+
+    header(class="navbar navbar-inverse navbar-static-top")
+        span(class="navbar-brand")
+          a(href="/") Home
+    .container(ng-hide="character")
+      .jumbotron.text-center
+        h2 Details for your character are being loaded.
+
+    .container-fluid(class="wrap" ng-show="character")
+      .jumbotron(class="floatleft" style="height: 1500px; padding-top: 20px; padding-left:20px; padding-right: 15px;")
+        .row
+          div(style="height:475px; float:left; width:50%;")
+            h2 {{ character.mainDetails.name }}
+            h3 Origin: {{ character.mainDetails.origin.name }}
+            h3 Publisher: {{ character.mainDetails.publisher.name }}
+            p.small {{ character.mainDetails.deck }}
+            a.btn.btn-sm.btn-warning(href="characters/{{character.mainDetails.id}}") Details
+
+
+          div(style="height:475px; float:right; padding-right:15px;")
+            img(class="vsImage" ng-src="{{ character.mainDetails.image.small_url }}")
+        div(class="floatleft" stye="border:1px;")
+          h4 # of Powers : {{ character.mainDetails.powers.length }}
+
+          ul
+            li.list(ng-repeat="power in character.mainDetails.powers| limitTo:5") {{ power.name }}
+          h4 # of Teams : {{ character.mainDetails.teams.length}}
+
+          ul
+            li.list(ng-repeat="team in character.mainDetails.teams | limitTo:3") {{ team.name }}
+          h4 # of Friends : {{ character.mainDetails.character_friends.length }}
+          ul
+            li.list(ng-repeat="friend in character.mainDetails.character_friends | limitTo: 10")
+                a(href="characters/{{ friend.id }} ") {{ friend.name }}
+
+          h4 # of Enemies : {{ character.mainDetails.character_enemies.length }}
+          ul
+            li.list(ng-repeat="enemy in character.mainDetails.character_enemies | limitTo: 10")
+              a(href="characters/{{ enemy.id }} ") {{ enemy.name }}
+
+
+
+      .jumbotron(class="floatright" style="height:1500px; padding-top:20px; padding-left: 20px; padding-right:15px")
+        .row
+          div(style="height:475px; float:right; width:50%;")
+            h2 {{ character.challengerDetails.name }}
+            h3 Origin: {{ character.challengerDetails.origin.name }}
+            h3 Publisher: {{ character.challengerDetails.publisher.name }}
+            p.small {{ character.challengerDetails.deck }}
+            a.btn.btn-sm.btn-warning(href="characters/{{character.challengerDetails.id}}") Details
+
+
+          div(style="height:475px; float:left;")
+            img(class="vsImage" style="max-width: 300px;" ng-src="{{ character.challengerDetails.image.small_url }}")
+          div(style="clear: both;")
+          div(class="floatright" stye="border:1px; padding-right:20px;")
+            h4 # of Powers : {{ character.challengerDetails.powers.length }}
+            ul
+              li.list(ng-repeat="power in character.challengerDetails.powers| limitTo:5") {{ power.name }}
+            h4 # of Teams : {{ character.challengerDetails.teams.length }}
+            ul
+              li.list(ng-repeat="team in character.challengerDetails.teams | limitTo:3") {{ team.name }}
+            h4 # of Friends : {{ character.challengerDetails.character_friends.length }}
+            ul
+              li.list(ng-repeat="friend in character.challengerDetails.character_friends | limitTo: 10")
+                a(href="characters/{{ friend.id }} ") {{ friend.name }}
+
+            h4 # of Enemies : {{ character.challengerDetails.character_enemies.length }}
+            ul
+              li.list(ng-repeat="enemy in character.challengerDetails.character_enemies | limitTo: 10")
+                a(href="characters/{{ enemy.id }} ") {{ enemy.name }}
+
+      div(style="clear: both;")

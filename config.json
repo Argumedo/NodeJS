@@ -1,0 +1,8 @@
+{
+  "api": 
+  {
+    "base": "http://www.comicvine.com/api/characters",
+    "key": "00c82de7626b7d7880f5d5594aca2d17775a3857",
+    "details":"http://www.comicvine.com/api/character/4005-"
+  }
+}

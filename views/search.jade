@@ -1,0 +1,55 @@
+extends master
+
+block content
+
+	body(ng-controller="characterController")
+
+		header(class="navbar navbar-inverse navbar-static-top")
+			span(class="navbar-brand")
+				form
+				.form-group
+					p(class="color") Search For A Comic Character 
+						input(ng-model="name", type="text")
+						button.btn.pull-right(type="submit", ng-click="searchCharacters(); reveal='false';") Search
+
+
+		.container(ng-show="comic")
+			.row
+				div(id="sidebar")
+					.jumbotron
+						h2 Other Results
+						nav
+							ul
+								li(ng-repeat="com in comic.alt" ng-show="comic.alt.length > 0") 
+									a(ng-click="changeCharacter(com.id, comic.alt);" ) {{ com.name }}
+								li(ng-hide="comic.alt.length > 0") No Other Results Found
+								
+
+				div(id="main" )
+					.jumbotron.text-center
+						h2 {{comic.main.name}}
+						h4(ng-hide="comic.main.deck") No Information Listed
+						.row
+							div.col-sm-4.pull-left
+								img(ng-show="comic.main.deck" ng-src ='{{ comic.main.image.small_url }}')
+							div.col-sm-8
+								p.pull-right(id="display" ng-show="comic.main.deck")  {{ comic.main.deck}}
+									br
+									a.btn.btn-sm.btn-warning(href="characters/{{comic.main.id}}", ng-hide="comic.main.name == comic.main.error") Details
+
+
+		.container(ng-hide="reveal || comic")
+			.jumbotron.text-center
+				h2 Search for a Comic Character
+				img(src="/marvel.jpg")
+
+		.container(ng-show="reveal")
+			.jumbotron.text-center(ng-hide="comic")
+				h2 Character is loading.
+
+
+
+
+
+
+

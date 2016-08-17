@@ -1,0 +1,95 @@
+body {
+    background-color:grey;
+}
+
+img{
+	max-height:500px;
+	max-width:500px;
+	padding:1px;
+	border:1px solid black;
+	background-color:red;
+}
+
+#display{
+	font-size: 18px;
+	width:60%;
+	right-padding:none;
+
+
+}
+nav ul{
+	height:300px; 
+	width:100%;
+	max-height: 400px;
+	overflow-y:scroll;
+	padding:0;
+	list-style-type:none;
+	font-size: 17px;
+	border:1px solid black;
+}
+
+#main {
+	float:right;
+    width:67%;
+    height: 500px;
+    max-height:100px;
+}
+#sidebar {
+    float:left;
+    width:30%;
+    height: 500px;
+    max-height: 500px;
+}
+#image{
+	float:left;
+	width: 45%;
+}
+#details {
+	float:right;
+	width: 55%;
+}
+
+ul {
+  border: 0px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.list 
+{
+	color: #111;
+}
+li.list:nth-child(odd){
+	background-color: #EFEFEF;
+	height: 30px;
+	font-size: 15px;
+}
+
+li.list:nth-child(even) {
+	width: 100%;
+	background: #FFFFFF;
+ 	height: 30px;
+	font-size:15px;
+}
+p.small
+{
+	font-size: 15px;
+}
+.wrap{
+	width:100%;
+}
+
+.floatleft{
+	float:left;
+	width:50%;
+}
+.floatright{
+	float:right;
+	width:50%;
+}
+.vsImage
+{
+	max-width: 300px;
+	max-height: 400px;
+}

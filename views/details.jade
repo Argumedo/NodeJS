@@ -1,0 +1,48 @@
+extends master
+
+block content
+
+	body(ng-controller="detailController")
+
+		header(class="navbar navbar-inverse navbar-static-top")
+				span(class="navbar-brand")
+					a(href="/") Home
+
+		.container
+			.jumbotron(ng-show="character")
+				h2 {{ character.name }}
+				h3 Origin: {{ character.origin.name }}
+				h3 Publisher: {{ character.publisher.name }}
+
+				.row
+					div(id="image")
+						img( ng-src="{{ character.image.small_url }}")
+
+					div(id="details")
+						p(ng-show="character.deck") {{ character.deck }}
+
+						button.btn.btn-sm.btn-warning(ng-showl="character.powers", ng-click="togglePowers();" style="width: 100%;") {{ powerButtonText }}
+						ul
+							li.text-center(ng-show="displayPowers" class="list", ng-repeat="power in character.powers") {{ power.name }}
+
+						button.btn.btn-sm.btn-warning(ng-show="character.character_friends", ng-click="toggleFriends();", style="width: 100%;") {{ friendButtonText }}
+						ul
+							li.text-center(ng-show="displayFriends", class="list", ng-repeat="friend in character.character_friends") 
+								a(href="characters/{{ friend.id }} ") {{ friend.name }}
+
+						button.btn.btn-sm.btn-warning(ng-click="toggleEnemies();", style="width: 100%;") {{ enemyButtonText }}
+						ul
+							li(ng-show="displayEnemies", class="list", ng-repeat="enemy in character.character_enemies") 
+								a.btn.btn-sm.btn-warning(href="characters/{{ character.id }}/versus/{{ enemy.id }}" class="img-circle") vs
+								a(href="characters/{{ enemy.id }}") {{ enemy.name }}
+
+
+
+			.jumbotron.text-center(ng-show="err")
+				h2 {{ err.error }}
+				h3 {{ err.desc }}
+
+				img(ng-src="{{ err.img }}")
+
+			.jumbotron.text-center(ng-hide="character || err")
+				h2 Details for your character are being loaded.
